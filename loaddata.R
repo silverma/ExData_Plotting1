@@ -17,12 +17,13 @@ if(!exists("powerdata")) {
                  sep=";",
                  na.strings="?")
   
-  # convert Date and Time variables to combined Date/Time class
+  # convert Date to date class
   powerdata$Date <- as.Date(powerdata$Date, format="%d/%m/%Y")
   
   # create a subset of data
   powerdata = subset(powerdata, powerdata$Date >= '2007-02-01' & powerdata$Date <= '2007-02-02')
   
+  # Put Date and Time variables to combined Date/Time class
   powerdata$DateTime <- paste(powerdata$Date,powerdata$Time)
   powerdata$DateTime <- strptime(powerdata$DateTime, format="%Y-%m-%d %H:%M:%S")
 }
